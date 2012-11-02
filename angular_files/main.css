@@ -701,3 +701,18 @@ a:focus {
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+
+#thats-me {
+	position: fixed;
+	display: block;
+	bottom: 0;
+	right: 0;
+	padding: 15px;
+	font-size: 62px;
+	background: rgba(37, 37, 37, 0.19);
+	border-top-left-radius: 10px;
+}
+
+#thats-me a {
+	background: none;
+}
