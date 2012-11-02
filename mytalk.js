@@ -1,7 +1,7 @@
 (function(document, window) {
   var talk = window.talk = {};
 
-  talk.TICK_TIME = 10000;
+  talk.TICK_TIME = 12000;
 
   talk.impress_inst = undefined;
   talk.current_tick_timeout_id = undefined;
@@ -13,9 +13,8 @@
     var root = document.querySelector("#impress");
     root.addEventListener("impress:stepenter", talk.onStepEnter)
     root.addEventListener("impress:stepleave", talk.onStepLeave)
+    document.addEventListener("click", talk.onRootClick);
   };
-  talk.progress = function(active_slide, slide_num) {
-  }
   
   talk.onStepEnter = function(event) {
     var active_slide = event.target,
@@ -42,4 +41,9 @@
   talk.onSlideTimeout = function() {
     talk.impress_inst.next();
   };
+
+  talk.onRootClick = function() {
+    talk.impress_inst.next();
+  };
+
 }(document, window))
