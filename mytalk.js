@@ -4,6 +4,7 @@
   talk.TICK_TIME = 10000;
 
   talk.impress_inst = undefined;
+  talk.current_tick_timeout_id = undefined;
 
   talk.init = function(impress_instance) {
     console.log("Starting the talk.");
@@ -11,6 +12,7 @@
 
     var root = document.querySelector("#impress");
     root.addEventListener("impress:stepenter", talk.onStepEnter)
+    root.addEventListener("impress:stepleave", talk.onStepLeave)
   };
   talk.progress = function(active_slide, slide_num) {
   }
@@ -23,8 +25,17 @@
     console.log("Tick! Slide number = " + slide_number);
   
     if (should_auto_tick) {
-      console.log("Scheduled next tick");
-      window.setTimeout(talk.onSlideTimeout, talk.TICK_TIME);
+      console.log("Scheduling next tick");
+      talk.current_tick_timeout_id = 
+        window.setTimeout(talk.onSlideTimeout, talk.TICK_TIME);
+    }
+  };
+
+  talk.onStepLeave = function(event) {
+    if (talk.current_tick_timeout_id !== undefined) {
+      console.log("Clearing existing timeout");
+      window.clearTimeout(talk.current_tick_timeout_id);
+      talk.current_tick_timeout_id = undefined;
     }
   };
 
