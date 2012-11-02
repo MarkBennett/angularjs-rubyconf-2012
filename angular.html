@@ -236,6 +236,15 @@
             </div>
             <script>if ("ontouchstart" in document.documentElement) {     document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";}</script>
         </div>
-        <script type="text/javascript" src="./angular_files/impress.js"></script><script>if (!window.impressStarted) {    startImpress(document, window);    impress().init();   }</script>
+				<script type="text/javascript" src="./angular_files/impress.js"></script>
+				<script type="text/javascript" src="mytalk.js"></script>
+				<script>
+					if (!window.impressStarted) { 
+						startImpress(document, window);
+						window.impress_instance = impress()
+						impress_instance.init();
+						talk.init(impress_instance);
+					}
+				</script>
     </body>
 </html>
